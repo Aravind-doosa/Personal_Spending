@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Spending Tracker</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Spending Tracker</h1>
+        <a href="/add" class="btn">➕ Add New Expense</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Date & Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% expenses.forEach(expense => { %>
+                <tr>
+                    <td><%= expense.description %></td>
+                    <td><%= expense.amount %></td>
+                    <td><%= new Date(expense.date).toLocaleString() %></td>
+                    <td>
+                        <a href="/edit <%= expense.id  %>" class="edit">✏️ Edit</a>
+                        <form action="/delete/<%= expense.id %>" method="Post" style="display: inline;">
+                            <button type="submit" class="delete">🗑️Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
